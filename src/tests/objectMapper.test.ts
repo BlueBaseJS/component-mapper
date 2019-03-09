@@ -43,12 +43,9 @@ describe('Utils', () => {
 
 			const fields = {
 				children: 'label',
-				onPress: {
-					key: 'onClick',
-					transform: (props: typeof src) => {
-						// Return a onPress function
-						return (onPressParam: any) => props.onClick({ target: onPressParam.value });
-					},
+				onPress: (props: typeof src) => {
+					// Return a onPress function
+					return (onPressParam: any) => props.onClick({ target: onPressParam.value });
 				},
 			};
 

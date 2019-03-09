@@ -1,26 +1,11 @@
-export interface ObjectMapperField {
-	key?: string;
-	transform?: (...params: any[]) => any;
-}
+export type ObjectMapperField = string | ((...params: any[]) => any);
 
 export interface Fields {
-	[src: string]: string | ObjectMapperField;
+	[src: string]: ObjectMapperField;
 }
 
 export interface FieldsInternal {
 	[src: string]: ObjectMapperField;
-}
-
-function processMapperFields(fields: Fields): FieldsInternal {
-	const newFields: FieldsInternal = {};
-
-	Object.keys(fields).forEach((srcKey: string) => {
-		const destKey = fields[srcKey];
-
-		newFields[srcKey] = typeof destKey === 'string' ? { key: destKey } : destKey;
-	});
-
-	return newFields;
 }
 
 /**
@@ -31,19 +16,19 @@ function processMapperFields(fields: Fields): FieldsInternal {
 
 export function objectMapper(obj: any, fields: Fields) {
 	const newObj: any = {};
-	const processedFields = processMapperFields(fields);
+	// const processedFields = processMapperFields(fields);
 
-	Object.keys(processedFields).forEach(destKey => {
-		const src = processedFields[destKey];
+	Object.keys(fields).forEach(destKey => {
+		const src = fields[destKey];
 
 		let value;
 
-		if (src.key && obj[src.key]) {
-			value = obj[src.key];
+		if (typeof src === 'string' && obj[src]) {
+			value = obj[src];
 		}
 
-		if (src.transform) {
-			value = src.transform(obj, fields);
+		if (typeof src === 'function' && src) {
+			value = src(obj, fields);
 		}
 
 		if (value === undefined) {

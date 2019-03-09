@@ -8,16 +8,26 @@ export interface FieldsInternal {
 	[src: string]: ObjectMapperField;
 }
 
+export interface ObjectMapperOptions {
+	rest?: boolean;
+	ignore?: string[];
+}
 /**
  * Example 1:
  *
  * mapObject({ foo: 'bar' })
  */
+export function objectMapper(obj: any, fields: Fields, options?: ObjectMapperOptions) {
+	const { ignore, rest }: ObjectMapperOptions = {
+		ignore: [],
+		rest: false,
+		...options,
+	};
 
-export function objectMapper(obj: any, fields: Fields) {
 	const newObj: any = {};
-	// const processedFields = processMapperFields(fields);
+	const restObj: any = {};
 
+	// Do the mapping magic here
 	Object.keys(fields).forEach(destKey => {
 		const src = fields[destKey];
 
@@ -38,7 +48,21 @@ export function objectMapper(obj: any, fields: Fields) {
 		newObj[destKey] = value;
 	});
 
-	return newObj;
+	// Find rest props
+	if (rest === true) {
+		const inputKeys = Object.values(fields).filter(x => typeof x === 'string');
+
+		Object.keys(obj).forEach(key => {
+			if (inputKeys.indexOf(key) < 0 && ignore.indexOf(key) < 0) {
+				restObj[key] = obj[key];
+			}
+		});
+	}
+
+	return {
+		...restObj,
+		...newObj,
+	};
 }
 
 export type foo = Partial<Fields>;

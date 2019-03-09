@@ -1,4 +1,4 @@
-import { Fields, objectMapper } from './objectMapper';
+import { Fields, objectMapper, ObjectMapperOptions } from './objectMapper';
 import React from 'react';
 
 /**
@@ -17,10 +17,10 @@ import React from 'react';
  * @param fields
  */
 export function componentMapper<Props = any>
-	(Component: React.ComponentType<any>, fields: Fields): React.ComponentType<Props> {
+	(Component: React.ComponentType<any>, fields: Fields, options?: ObjectMapperOptions): React.ComponentType<Props> {
 
 	return (props: any) => {
-		const newProps: Props = objectMapper(props, fields);
+		const newProps: Props = objectMapper(props, fields, options);
 		return <Component {...newProps} />;
 	};
 }

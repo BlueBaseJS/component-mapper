@@ -37,25 +37,29 @@ describe('Utils', () => {
 			// External lib has an onClick event, that send required value on param.target
 			// Our internal api understands onPress event, with value in param.value
 			const src = {
+				baz: 'bar',
+				foo: false,
+				hello: 'world',
 				label: 'Submit',
 				onClick: (event: any) => `${event.target} Clicks`,
 			};
 
 			const fields = {
 				children: 'label',
-				onPress: {
-					key: 'onClick',
-					transform: (props: typeof src) => {
-						// Return a onPress function
-						return (onPressParam: any) => props.onClick({ target: onPressParam.value });
-					},
+				onPress: (props: typeof src) => {
+					// Return a onPress function
+					return (onPressParam: any) => props.onClick({ target: onPressParam.value });
 				},
 			};
 
-			const output = objectMapper(src, fields);
+			const output = objectMapper(src, fields, { rest: true, ignore: ['hello'] });
 
 			expect(output.children).toBe('Submit');
 			expect(output.onPress({ value: 5 })).toBe('5 Clicks');
+
+			// Rest
+			expect(output.baz).toBe('bar');
+			expect(output.foo).toBe(false);
 		});
 	});
 });

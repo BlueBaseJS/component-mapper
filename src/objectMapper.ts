@@ -1,49 +1,44 @@
-export interface ObjectMapperField {
-	key?: string;
-	transform?: (...params: any[]) => any;
-}
+export type ObjectMapperField = string | ((...params: any[]) => any);
 
 export interface Fields {
-	[src: string]: string | ObjectMapperField;
+	[src: string]: ObjectMapperField;
 }
 
 export interface FieldsInternal {
 	[src: string]: ObjectMapperField;
 }
 
-function processMapperFields(fields: Fields): FieldsInternal {
-	const newFields: FieldsInternal = {};
-
-	Object.keys(fields).forEach((srcKey: string) => {
-		const destKey = fields[srcKey];
-
-		newFields[srcKey] = typeof destKey === 'string' ? { key: destKey } : destKey;
-	});
-
-	return newFields;
+export interface ObjectMapperOptions {
+	rest?: boolean;
+	ignore?: string[];
 }
-
 /**
  * Example 1:
  *
  * mapObject({ foo: 'bar' })
  */
+export function objectMapper(obj: any, fields: Fields, options?: ObjectMapperOptions) {
+	const { ignore, rest }: ObjectMapperOptions = {
+		ignore: [],
+		rest: false,
+		...options,
+	};
 
-export function objectMapper(obj: any, fields: Fields) {
 	const newObj: any = {};
-	const processedFields = processMapperFields(fields);
+	const restObj: any = {};
 
-	Object.keys(processedFields).forEach(destKey => {
-		const src = processedFields[destKey];
+	// Do the mapping magic here
+	Object.keys(fields).forEach(destKey => {
+		const src = fields[destKey];
 
 		let value;
 
-		if (src.key && obj[src.key]) {
-			value = obj[src.key];
+		if (typeof src === 'string' && obj[src]) {
+			value = obj[src];
 		}
 
-		if (src.transform) {
-			value = src.transform(obj, fields);
+		if (typeof src === 'function' && src) {
+			value = src(obj, fields);
 		}
 
 		if (value === undefined) {
@@ -53,7 +48,21 @@ export function objectMapper(obj: any, fields: Fields) {
 		newObj[destKey] = value;
 	});
 
-	return newObj;
+	// Find rest props
+	if (rest === true) {
+		const inputKeys = Object.values(fields).filter(x => typeof x === 'string');
+
+		Object.keys(obj).forEach(key => {
+			if (inputKeys.indexOf(key) < 0 && ignore.indexOf(key) < 0) {
+				restObj[key] = obj[key];
+			}
+		});
+	}
+
+	return {
+		...restObj,
+		...newObj,
+	};
 }
 
 export type foo = Partial<Fields>;

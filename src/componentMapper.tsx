@@ -1,4 +1,4 @@
-import { Fields, objectMapper, ObjectMapperOptions } from './objectMapper';
+import { Fields, ObjectMapperOptions, objectMapper } from './objectMapper';
 import React from 'react';
 
 /**

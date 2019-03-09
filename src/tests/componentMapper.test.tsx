@@ -22,12 +22,8 @@ describe('componentMapper', () => {
 		const Button: React.ComponentType<ButtonProps> = componentMapper(ThirdPartyButton, {
 			children: 'children',
 			disabled: 'disabled',
-			mini: {
-				transform: (props: ButtonProps) => props.size === 'small'
-			},
-			primary: {
-				transform: (props: ButtonProps) => props.color === 'primary'
-			},
+			mini: (props: ButtonProps) => props.size === 'small',
+			primary: (props: ButtonProps) => props.color === 'primary',
 		});
 
 		const rendered = TestRenderer.create(

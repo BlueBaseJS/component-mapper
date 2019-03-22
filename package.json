@@ -40,10 +40,8 @@
     "doc:json": "typedoc src/ --target ES6 --mode file --json docs/typedoc.json && cp -r assets docs",
     "doc:build-storybook": "build-storybook -c ./bluebase/storybook/configs -o docs/storybook",
     "doc:publish": "gh-pages -m \"[ci skip] Updates\" -d docs",
-    "version": "standard-version",
     "reset": "git clean -dfx && git reset --hard && npm i",
     "all": "run-s reset test cov:check doc:html",
-    "prepare-release": "run-s all version doc:publish",
     "size": "size-limit",
     "storybook:start": "bluebase storybook:start",
     "storybook-native": "bluebase storybook-native:start",
@@ -62,9 +60,7 @@
     "cov": "Rebuild, run tests, then create and open the coverage report",
     "doc": "Generate HTML API documentation and open it in a browser",
     "doc:json": "Generate API documentation in typedoc JSON format",
-    "version": "Bump package.json version, update CHANGELOG.md, tag release",
-    "reset": "Delete all untracked files and reset the repo to the last commit",
-    "prepare-release": "One-step: clean, build, test, publish docs, and prep a release"
+    "reset": "Delete all untracked files and reset the repo to the last commit"
   },
   "engines": {
     "node": ">=8.9"
@@ -100,7 +96,6 @@
     "react-test-renderer": "^16.8.4",
     "schedule": "^0.5.0",
     "size-limit": "^0.21.1",
-    "standard-version": "^5.0.1",
     "trash-cli": "^1.4.0",
     "ts-jest": "^24.0.0",
     "tslint": "^5.13.1",

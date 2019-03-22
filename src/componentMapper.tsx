@@ -11,8 +11,6 @@ import React from 'react';
  *
  * So BB.Components.Button = componentMapper(MUI.Button, { label: children });
  *
- * TODO: Transfer "rest" props, "ignore props"
- *
  * @param Component
  * @param fields
  */

@@ -56,7 +56,7 @@ export function objectMapper(obj: any, fields: Fields, options?: ObjectMapperOpt
 		// If src is a function, then it is a thunk.
 		if (typeof src === 'function' && src) {
 			// Resolve the thunk and use the returned data as value
-			value = src(obj, fields);
+			value = src({ ...defaultProps, ...obj }, fields);
 		}
 
 		// After everything, if the value is still undefined, then skip this key

@@ -71,13 +71,12 @@ describe('Utils', () => {
 			const output = objectMapper(
 				src,
 				{ bar: 'foo', baz: 'fzz' },
-				{ defaultProps: {  baz: 5, boo: false } }
+				{ defaultProps: { baz: 5, boo: false } }
 			);
 
 			const expected = { baz: 10, boo: false };
 
 			expect(output).toMatchObject(expected);
 		});
-
 	});
 });

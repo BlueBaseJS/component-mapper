@@ -78,5 +78,25 @@ describe('Utils', () => {
 
 			expect(output).toMatchObject(expected);
 		});
+
+		it('should use ignore props', () => {
+			const src = {
+				foo: undefined,
+				fzz: 10,
+			};
+
+			const output = objectMapper(
+				src,
+				{ bar: 'foo', baz: 'fzz' },
+				{
+					defaultProps: { baz: 5, boo: false },
+					ignore: ['bar', 'boo'],
+				}
+			);
+
+			const expected = { baz: 10 };
+
+			expect(output).toMatchObject(expected);
+		});
 	});
 });

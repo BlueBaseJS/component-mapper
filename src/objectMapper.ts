@@ -39,7 +39,9 @@ export function objectMapper(obj: any, fields: Fields, options?: ObjectMapperOpt
 	const newObj: any = {};
 	const restObj: any = {};
 
-	// Do the mapping magic here
+	//////////////////////////
+	// Create Mapped Object //
+	//////////////////////////
 	Object.keys(fields).forEach(destKey => {
 		// src fields key or thunk
 		const src = fields[destKey];
@@ -68,7 +70,9 @@ export function objectMapper(obj: any, fields: Fields, options?: ObjectMapperOpt
 		newObj[destKey] = value;
 	});
 
-	// Find rest props
+	/////////////////////////////
+	// Add "rest" of the props //
+	/////////////////////////////
 	if (rest === true) {
 		const inputKeys = Object.values(fields).filter(x => typeof x === 'string');
 
@@ -79,11 +83,23 @@ export function objectMapper(obj: any, fields: Fields, options?: ObjectMapperOpt
 		});
 	}
 
-	return {
+	////////////////////////////
+	// Construct final object //
+	////////////////////////////
+	const result = {
 		...defaultProps,
 		...restObj,
 		...newObj,
 	};
+
+	//////////////////////////
+	// Remove ignored props //
+	//////////////////////////
+	ignore.forEach(key => {
+		delete result[key];
+	});
+
+	return result;
 }
 
 export type foo = Partial<Fields>;

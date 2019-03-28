@@ -50,7 +50,7 @@ export function objectMapper(obj: any, fields: Fields, options?: ObjectMapperOpt
 
 		// If src is a string, then it represents a key in the input object.
 		// Check if said key does in fact exist in the object
-		if (typeof src === 'string' && obj[src]) {
+		if (typeof src === 'string' && obj[src] !== undefined) {
 			// We have resolved the value here
 			value = obj[src];
 		}

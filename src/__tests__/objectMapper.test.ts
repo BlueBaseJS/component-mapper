@@ -5,14 +5,14 @@ describe('Utils', () => {
 		it('should map a simple object', () => {
 			const src = {
 				foo: 5,
-				fzz: 10,
+				fzz: false,
 			};
 
 			const output = objectMapper(src, { bar: 'foo', baz: 'fzz', brr: 'faz' });
 
 			const expected = {
 				bar: 5,
-				baz: 10,
+				baz: false,
 			};
 
 			expect(output).toMatchObject(expected);

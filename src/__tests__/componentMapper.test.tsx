@@ -2,7 +2,12 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import { componentMapper } from '../';
 
-type ButtonProps = any;
+type ButtonProps = {
+	children: React.ReactNode,
+	color: 'primary' | 'secondary',
+	size: 'small' | 'normal' | 'large',
+	disabled: boolean,
+};
 
 interface ThirdPartyButtonProps {
 	children: React.ReactNode,
@@ -11,20 +16,62 @@ interface ThirdPartyButtonProps {
 	disabled: boolean,
 }
 
-const ThirdPartyButton = (props: ThirdPartyButtonProps) => (
-	<div>{JSON.stringify(props)}</div>
+const ThirdPartyButton = ({ children, ...rest }: ThirdPartyButtonProps) => (
+	<div {...rest}>{children}</div>
 );
 
 describe('componentMapper', () => {
 
-	test(`should render BlueBaseApp`, () => {
+	test(`should map ThirdPartyButton to Button`, () => {
 
-		const Button: React.ComponentType<ButtonProps> = componentMapper(ThirdPartyButton, {
+		const Button: React.ComponentType<ButtonProps> =
+		componentMapper<ButtonProps, ThirdPartyButtonProps>(ThirdPartyButton, {
 			children: 'children',
 			disabled: 'disabled',
-			mini: (props: ButtonProps) => props.size === 'small',
-			primary: (props: ButtonProps) => props.color === 'primary',
+			mini: (props) => props.size === 'small',
+			primary: (props) => props.color === 'primary',
 		});
+
+		const rendered = TestRenderer.create(
+			<Button color="secondary" disabled={true} size="small">
+				Hello world!
+			</Button>
+		);
+
+		const jsonStr = (rendered as any).toJSON();
+
+		expect(jsonStr.props).toMatchObject({
+			disabled: true,
+			mini: true,
+			primary: false,
+		});
+		expect(jsonStr.children.join()).toBe('Hello world!');
+	});
+
+	test(`should use a custom render function`, () => {
+
+		const Button: React.ComponentType<ButtonProps> =
+		componentMapper<ButtonProps, ThirdPartyButtonProps>(
+			ThirdPartyButton,
+			{
+				children: 'children',
+				disabled: 'disabled',
+				mini: (props) => props.size === 'small',
+				primary: (props) => props.color === 'primary',
+			}, {
+				render: (props, Component) => {
+
+					const { children, ...rest } = props;
+					return (
+						<Component {...rest}>
+						 <div data-testID="wrapper" style={{ backgroundColor: 'red' }}>
+							 {children}
+						 </div>
+						</Component>
+					);
+				}
+			}
+		);
 
 		const rendered = TestRenderer.create(
 			<Button color="secondary" disabled={true} size="small">
@@ -32,14 +79,8 @@ describe('componentMapper', () => {
 			</Button>
 		);
 
-		const jsonStr = (rendered as any).toJSON().children.join();
-		const json = JSON.parse(jsonStr);
-		expect(json).toMatchObject({
-			children: 'Hello',
-			disabled: true,
-			mini: true,
-			primary: false,
-		});
+		expect((rendered.toJSON() as any).children[0].props['data-testID']).toBe('wrapper');
+		expect((rendered.toJSON() as any).children[0].children.join()).toBe('Hello');
 	});
 
 });

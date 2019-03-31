@@ -1,7 +1,7 @@
-export type ObjectMapperField = string | ((...params: any[]) => any);
+export type ObjectMapperField<T> = string | ((object: T, fields: Fields<T>) => any);
 
-export interface Fields {
-	[src: string]: ObjectMapperField;
+export interface Fields<T> {
+	[src: string]: ObjectMapperField<T>;
 }
 
 export interface ObjectMapperOptions {
@@ -28,7 +28,7 @@ export interface ObjectMapperOptions {
  *
  * mapObject({ foo: 'bar' })
  */
-export function objectMapper(obj: any, fields: Fields, options?: ObjectMapperOptions) {
+export function objectMapper<T = any>(obj: T, fields: Fields<T>, options?: ObjectMapperOptions) {
 	const { defaultProps, ignore, rest }: ObjectMapperOptions = {
 		defaultProps: {},
 		ignore: [],
@@ -50,9 +50,9 @@ export function objectMapper(obj: any, fields: Fields, options?: ObjectMapperOpt
 
 		// If src is a string, then it represents a key in the input object.
 		// Check if said key does in fact exist in the object
-		if (typeof src === 'string' && obj[src] !== undefined) {
+		if (typeof src === 'string' && (obj as any)[src] !== undefined) {
 			// We have resolved the value here
-			value = obj[src];
+			value = (obj as any)[src];
 		}
 
 		// If src is a function, then it is a thunk.
@@ -78,7 +78,7 @@ export function objectMapper(obj: any, fields: Fields, options?: ObjectMapperOpt
 
 		Object.keys(obj).forEach(key => {
 			if (inputKeys.indexOf(key) < 0 && ignore.indexOf(key) < 0) {
-				restObj[key] = obj[key];
+				restObj[key] = (obj as any)[key];
 			}
 		});
 	}
@@ -101,5 +101,3 @@ export function objectMapper(obj: any, fields: Fields, options?: ObjectMapperOpt
 
 	return result;
 }
-
-export type foo = Partial<Fields>;

@@ -96,7 +96,7 @@
     "react-test-renderer": "^16.8.4",
     "schedule": "^0.5.0",
     "size-limit": "^0.21.1",
-    "trash-cli": "^1.4.0",
+    "trash-cli": "^3.0.0",
     "ts-jest": "^24.0.0",
     "tslint": "^5.13.1",
     "typedoc": "^0.14.2",

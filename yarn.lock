@@ -3495,10 +3495,10 @@ file-loader@^3.0.1:
     loader-utils "^1.0.2"
     schema-utils "^1.0.0"
 
-file-type@^10.4.0:
-  version "10.9.0"
-  resolved "https://registry.yarnpkg.com/file-type/-/file-type-10.9.0.tgz#f6c12c7cb9e6b8aeefd6917555fd4f9eadf31891"
-  integrity sha512-9C5qtGR/fNibHC5gzuMmmgnjH3QDDLKMa8lYe9CiZVmAnI4aUaoMh40QyUPzzs0RYo837SOBKh7TYwle4G8E4w==
+file-type@^11.0.0:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/file-type/-/file-type-11.1.0.tgz#93780f3fed98b599755d846b99a1617a2ad063b8"
+  integrity sha512-rM0UO7Qm9K7TWTtA6AShI/t7H5BPjDeGVDaNyg9BjHAj3PysKy7+8C8D137R88jnR3rFJZQB/tFgydl5sN5m7g==
 
 filename-reserved-regex@^1.0.0:
   version "1.0.0"
@@ -3760,10 +3760,10 @@ get-stdin@^4.0.1:
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-4.0.1.tgz#b968c6b0a04384324902e8bf1a5df32579a450fe"
   integrity sha1-uWjGsKBDhDJJAui/Gl3zJXmkUP4=
 
-get-stdin@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-6.0.0.tgz#9e09bf712b360ab9225e812048f71fde9c89657b"
-  integrity sha512-jp4tHawyV7+fkkSKyvjuLZswblUtz+SQKzSWnBbii16BuZksJlU1wuBYXY75r+duh/llF1ur6oNwi+2ZzjKZ7g==
+get-stdin@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-7.0.0.tgz#8d5de98f15171a125c5e516643c7a6d0ea8a96f6"
+  integrity sha512-zRKcywvrXlXsA0v0i9Io4KDRaAw7+a1ZpjRwl9Wox8PFlVCCHra7E9c4kqXCoCM9nR5tBkaTTZRBoCm60bFqTQ==
 
 get-stream@^3.0.0:
   version "3.0.0"
@@ -4553,6 +4553,11 @@ is-stream@^1.0.0, is-stream@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
   integrity sha1-EtSj3U5o4Lec6428hBc66A2RykQ=
+
+is-stream@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-2.0.0.tgz#bde9c32680d6fae04129d6ac9d921ce7815f78e3"
+  integrity sha512-XCoy+WlUr7d1+Z8GgSuXmpuUFC9fOhRXglJMx+dwLKTkL44Cjd4W1Z5P+BQZpr+cR93aGP4S/s7Ftw6Nd/kiEw==
 
 is-svg@^3.0.0:
   version "3.0.0"
@@ -5416,6 +5421,13 @@ make-dir@^1.0.0, make-dir@^1.3.0:
   dependencies:
     pify "^3.0.0"
 
+make-dir@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-3.0.0.tgz#1b5f39f6b9270ed33f9f054c5c0f84304989f801"
+  integrity sha512-grNJDhb8b1Jm1qeqW5R/O63wUo4UXo2v2HMic6YT9i/HBlF93S8jkMgH7yugvY9ABDShH4VZMn8I+U8+fCNegw==
+  dependencies:
+    semver "^6.0.0"
+
 make-error@1.x:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.3.5.tgz#efe4e81f6db28cadd605c70f29c831b58ef776c8"
@@ -6135,28 +6147,28 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+open@^6.3.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/open/-/open-6.4.0.tgz#5c13e96d0dc894686164f18965ecfe889ecfc8a9"
+  integrity sha512-IFenVPgF70fSm1keSd2iDBIDIBZkroLeuffXq+wKTzTJlBpesFWojV9lb8mzOfaAzM1sr7HQHuO0vtV0zYekGg==
+  dependencies:
+    is-wsl "^1.1.0"
+
 opener@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/opener/-/opener-1.5.1.tgz#6d2f0e77f1a0af0032aca716c2c1fbb8e7e8abed"
   integrity sha512-goYSy5c2UXE4Ra1xixabeVh1guIX/ZV/YokJksb6q2lubWu6UbvPQ20p542/sFIll1nl8JnCyK9oBaOcCWXwvA==
 
-opn-cli@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/opn-cli/-/opn-cli-4.0.0.tgz#dcc00052db3f296384f76e56ca1c59ffd7deb4d0"
-  integrity sha512-/NxjgPPxgYWAEznUwbvQd3H/vfMBRoIy8ZAvKNNgye2TbFE4pToVwmbi34Xo2rkmlfJIeWPa++zUSj4WBVGJxQ==
+opn-cli@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/opn-cli/-/opn-cli-5.0.0.tgz#e576fca5991333465d092a05ddfe8bf796c1bd0c"
+  integrity sha512-+KGOnL1M9C9BbgLh6KvbSshAmOZqJtblq5w/1tpNRswCJchn9kmD4ZgQLj6mVMr7DzLpE8M/kRrvGoIYYca4sg==
   dependencies:
-    file-type "^10.4.0"
-    get-stdin "^6.0.0"
+    file-type "^11.0.0"
+    get-stdin "^7.0.0"
     meow "^5.0.0"
-    opn "^5.4.0"
-    temp-write "^3.4.0"
-
-opn@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/opn/-/opn-5.4.0.tgz#cb545e7aab78562beb11aa3bfabc7042e1761035"
-  integrity sha512-YF9MNdVy/0qvJvDtunAOzFw9iasOQHpVthTCvGzxt61Il64AYSGdK+rYwld7NAfk9qJ7dt+hymBNSc9LNYS+Sw==
-  dependencies:
-    is-wsl "^1.1.0"
+    open "^6.3.0"
+    temp-write "^4.0.0"
 
 optimist@^0.6.1:
   version "0.6.1"
@@ -7560,6 +7572,11 @@ semver-diff@^2.0.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
   integrity sha512-RS9R6R35NYgQn++fkDWaOmqGoj4Ek9gGs+DPxNUZKuwE183xjJroKvyo1IzVFeXvUrvmALy6FWD5xrdJT25gMg==
 
+semver@^6.0.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
+  integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
+
 send@0.16.2:
   version "0.16.2"
   resolved "https://registry.yarnpkg.com/send/-/send-0.16.2.tgz#6ecca1e0f8c156d141597559848df64730a6bbc1"
@@ -8158,17 +8175,16 @@ temp-dir@^1.0.0:
   resolved "https://registry.yarnpkg.com/temp-dir/-/temp-dir-1.0.0.tgz#0a7c0ea26d3a39afa7e0ebea9c1fc0bc4daa011d"
   integrity sha1-CnwOom06Oa+n4OvqnB/AvE2qAR0=
 
-temp-write@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/temp-write/-/temp-write-3.4.0.tgz#8cff630fb7e9da05f047c74ce4ce4d685457d492"
-  integrity sha1-jP9jD7fp2gXwR8dM5M5NaFRX1JI=
+temp-write@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/temp-write/-/temp-write-4.0.0.tgz#cd2e0825fc826ae72d201dc26eef3bf7e6fc9320"
+  integrity sha512-HIeWmj77uOOHb0QX7siN3OtwV3CTntquin6TNVg6SHOqCP3hYKmox90eeFOGaY1MqJ9WYDDjkyZrW6qS5AWpbw==
   dependencies:
-    graceful-fs "^4.1.2"
-    is-stream "^1.1.0"
-    make-dir "^1.0.0"
-    pify "^3.0.0"
+    graceful-fs "^4.1.15"
+    is-stream "^2.0.0"
+    make-dir "^3.0.0"
     temp-dir "^1.0.0"
-    uuid "^3.0.1"
+    uuid "^3.3.2"
 
 terser-webpack-plugin@^1.1.0:
   version "1.2.3"
@@ -8750,7 +8766,7 @@ uuid@^2.0.1:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
   integrity sha1-Z+LoY3lyFVMN/zGOW/nc6/1Hsho=
 
-uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
+uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==

@@ -84,7 +84,7 @@
     "codacy-coverage": "^3.4.0",
     "codecov": "^3.2.0",
     "commitizen": "^3.0.7",
-    "cz-conventional-changelog": "^2.1.0",
+    "cz-conventional-changelog": "^3.2.1",
     "gh-pages": "^2.0.1",
     "jest": "^24.3.1",
     "npm-run-all": "^4.1.3",
